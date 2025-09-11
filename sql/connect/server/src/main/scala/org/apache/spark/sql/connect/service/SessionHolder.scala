@@ -98,7 +98,7 @@ case class SessionHolder(userId: String, sessionId: String, session: SparkSessio
 
   // Cache of inactive operation IDs for this session, either completed, interrupted or abandoned.
   // The Boolean is just a placeholder since Guava needs a <K, V> pair.
-  private val inactiveOperationIds: Cache[String, Boolean] =
+  private lazy val inactiveOperationIds: Cache[String, Boolean] =
     CacheBuilder.newBuilder()
       .ticker(Ticker.systemTicker())
       .expireAfterAccess(
